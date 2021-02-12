@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void SaisirTableau(int *Tab,int N)
+{
+    int i;
+    for(i=0;i<N;i++)
+    {
+        printf("Tab[%d]:",i);
+        scanf("%d",&Tab[i]);
+    }
+}
+void AfficherTableau(int *Tab,int N)
+{
+    int i;
+    for(i=0;i<N;i++)
+    {
+        printf("Tab[%d]=%d",i,Tab[i]);
+    }
+    printf("\n");
+}
+int TasserTableau(int *Tab,int N)
+{
+    int i,j=0;
+    /*Effacer les zeros et comprimer*/
+    /*Copier tous les elements de i vers j */
+    /*Augmenter j pour les elements non nuls.*/
+    for(i=0;i<N;i++)
+    {
+        Tab[j]=Tab[i];
+        if(Tab[i])
+        {
+            j++;
+        }
+    }
+    /*La nouvelle dimension du tableau et retournee*/
+    return j;
+
+}
+main()
+{
+    int *T;
+    int N,M;
+    int *Tpos,*Tneg;
+    int Npos=0,Nneg=0;
+    int i;
+
+    do{
+        printf("Entrez la taille:\n");
+        scanf("%d",&N);
+    }while(N<0);
+
+    T=(int*)malloc(sizeof(int)*N);
+    /*Saisie du Tableau*/
+    SaisirTableau(T,N);
+    /*Affichage du Tableau*/
+    AfficherTableau(T,N);
+    /*Tasser du Tableau*/
+    M=TasserTableau(T,N);
+    /*Edition du Tableau*/
+    AfficherTableau(T,M);
+}
